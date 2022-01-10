@@ -1,0 +1,19 @@
+class ReConvNetwork(torch.nn.Module):
+    def __init__(self):
+        super(ReConvNetwork, self).__init__()
+        self.upstream = torch.nn.UpsamplingBilinear2d(size=(416, 416))
+
+    def forward(self, x):
+        x = self.upstream(x)
+        return x
+        
+        
+        
+ class ConvNetwork(torch.nn.Module):
+    def __init__(self):
+        super(ConvNetwork, self).__init__()
+        self.max_pooling = torch.nn.MaxPool2d(kernel_size=(2, 2))
+
+    def forward(self, x):
+        x = self.max_pooling(x)
+        return x
